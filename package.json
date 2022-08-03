@@ -1,0 +1,16 @@
+{
+  "name": "shell-v2-arbitrum-rinkeby-ii",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ cowri/shell-v2-arbitrum-rinkeby-ii",
+    "create-local": "graph create --node http://localhost:8020/ cowri/shell-v2-arbitrum-rinkeby-ii",
+    "remove-local": "graph remove --node http://localhost:8020/ cowri/shell-v2-arbitrum-rinkeby-ii",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 cowri/shell-v2-arbitrum-rinkeby-ii"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.29.0",
+    "@graphprotocol/graph-ts": "0.26.0"
+  }
+}
