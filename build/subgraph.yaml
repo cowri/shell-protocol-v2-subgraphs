@@ -1,0 +1,84 @@
+specVersion: 0.0.2
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Ocean
+    network: rinkeby
+    source:
+      address: "0xc95DAf083b754210458e62EaD997453F74F47072"
+      startBlock: 13673275
+      abi: Ocean
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - UnwrapFee
+        - Fee
+        - Primitive
+        - TokenRegistry
+        - RegisteredToken
+        - ERC20ExternalContract
+        - ERC721ExternalContract
+        - ERC721Token
+        - ERC1155ExternalContract
+        - ERC1155Token
+        - OceanTransaction
+        - ERC20Wrap
+        - ERC20Unwrap
+        - ERC721Wrap
+        - ERC721Unwrap
+        - ERC1155Wrap
+        - ERC1155Unwrap
+        - ComputeInputAmount
+        - ComputeOutputAmount
+        - ForwarderTransaction
+        - Mint
+        - Burn
+        - UserTransfer
+        - OceanToken
+        - Warning
+      abis:
+        - name: Ocean
+          file: Ocean/abis/Ocean.json
+        - name: ERC20
+          file: Ocean/abis/ERC20.json
+        - name: ERC20SymbolBytes
+          file: Ocean/abis/ERC20SymbolBytes.json
+        - name: ERC20NameBytes
+          file: Ocean/abis/ERC20NameBytes.json
+      eventHandlers:
+        - event: ChangeUnwrapFee(uint256,uint256,address)
+          handler: handleChangeUnwrapFee
+        - event: Erc20Wrap(indexed address,uint256,uint256,uint256,indexed address,indexed uint256)
+          handler: handleErc20Wrap
+        - event: Erc20Unwrap(indexed address,uint256,uint256,uint256,indexed address,indexed
+            uint256)
+          handler: handleErc20Unwrap
+        - event: Erc721Wrap(indexed address,uint256,indexed address,indexed uint256)
+          handler: handleErc721Wrap
+        - event: Erc721Unwrap(indexed address,uint256,indexed address,indexed uint256)
+          handler: handleErc721Unwrap
+        - event: Erc1155Wrap(indexed address,uint256,uint256,indexed address,indexed uint256)
+          handler: handleErc1155Wrap
+        - event: Erc1155Unwrap(indexed address,uint256,uint256,uint256,indexed address,indexed
+            uint256)
+          handler: handleErc1155Unwrap
+        - event: ComputeOutputAmount(indexed address,uint256,uint256,uint256,uint256,indexed
+            address)
+          handler: handleComputeOutputAmount
+        - event: ComputeInputAmount(indexed address,uint256,uint256,uint256,uint256,indexed address)
+          handler: handleComputeInputAmount
+        - event: NewTokensRegistered(indexed address,uint256[],uint256[])
+          handler: handleNewTokensRegistered
+        - event: TransferBatch(indexed address,indexed address,indexed address,uint256[],uint256[])
+          handler: handleTransferBatch
+        - event: TransferSingle(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleTransferSingle
+        - event: ForwardedOceanTransaction(indexed address,indexed address,uint256)
+          handler: handleForwarderOceanTransaction
+        - event: OceanTransaction(indexed address,uint256)
+          handler: handleOceanTransaction
+      file: Ocean/Ocean.wasm
